@@ -18,20 +18,42 @@ body {
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 600px;
-  max-width: 600px;
+  max-height: 1200px;
+  max-width: 1200px;
 }
 
 .grid div {
   border: 1px solid lightgrey;
   flex-grow: 1;
-  height: 10%;
-  width: 10%;
+  height: 57.1428569464px;
+  width: 57.1428569464px;
 }
 
 .grid div.player {
-  background-image: url(../assets/sprite-sheet.png);
-  background-size: 300px;
-  background-position-x: 0;
-  background-position-y: 0;
+  background-image: url(../assets/MilleniumFalcon.png);
+  background-size: 80px;
+  background-position-x: -15px;
+  background-position-y: -10px;
+}
+
+
+.grid div.playerlaser {
+  background-image: url(../assets/laserbeam.png);
+  background-size: 50px;
+  background-position-x: 0px;
+  background-position-y: -20px;
+}
+
+.grid div.aliens {
+  background-image: url(../assets/TieFighter.png);
+  background-size: 60px;
+  background-position-x: 0px;
+  background-position-y: 00px;
+}
+
+.grid div.explosion {
+  background-image: url(../assets/Explosion.png);
+  background-size: 60px;
+  background-position-x: 0px;
+  background-position-y: 00px;
 }
