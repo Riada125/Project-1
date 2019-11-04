@@ -78,7 +78,7 @@ function setupGame() {
 
       }, 500)
     }
-    //moveAliens()
+    moveAliens()
 
 
 
