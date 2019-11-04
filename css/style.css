@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 body {
@@ -18,49 +20,75 @@ body {
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 1200px;
-  max-width: 1200px;
+  max-height: 110vh;
+  max-width: 110vh;
 }
+
+.start {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    max-height: 1200px;
+    max-width: 1200px;
+  }
+
+  .score {
+    margin: 2%;
+    padding: 1%;
+    border: 1px solid yellow;
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    max-height: 45vh;
+    max-width: 22.5vh;
+  }
+  
+
 
 .grid div {
   border: 1px solid lightgrey;
   flex-grow: 1;
-  height: 57.1428569464px;
-  width: 57.1428569464px;
+  height: 4.76%;
+  width: 4.76%;
 }
 
 .grid div.player {
   background-image: url(../assets/MilleniumFalcon.png);
-  background-size: 80px;
-  background-position-x: -15px;
-  background-position-y: -10px;
+  background-size: 150%;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  
 }
 
 
 .grid div.playerlaser {
   background-image: url(../assets/laserbeam.png);
-  background-size: 50px;
-  background-position-x: 0px;
-  background-position-y: -20px;
+  background-size: 90%;
+  background-position-x: 25%;
+  background-position-y: 40%; 
 }
 
 .grid div.aliens {
   background-image: url(../assets/TieFighter.png);
-  background-size: 60px;
-  background-position-x: 0px;
-  background-position-y: 00px;
 }
 
 .grid div.explosion {
   background-image: url(../assets/Explosion.png);
-  background-size: 70px;
-  background-position-x: 0px;
-  background-position-y: 00px;
+  background-size: 130%;
+  background-position-x: 20%;
+  background-position-y: 5%;
 }
 
 .grid div.enemylaser {
   background-image: url(../assets/EnemyLaser.png);
-  background-size: 25px;
-  background-position-x: 0px;
-  background-position-y: -5px;
+  background-size: 38%;
+  background-repeat: space;
+  /* background-position-x: 20%;
+  background-position-y: 5%; */
 }
