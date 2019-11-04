@@ -53,7 +53,14 @@ body {
 
 .grid div.explosion {
   background-image: url(../assets/Explosion.png);
-  background-size: 60px;
+  background-size: 70px;
   background-position-x: 0px;
   background-position-y: 00px;
+}
+
+.grid div.enemylaser {
+  background-image: url(../assets/EnemyLaser.png);
+  background-size: 25px;
+  background-position-x: 0px;
+  background-position-y: -5px;
 }
