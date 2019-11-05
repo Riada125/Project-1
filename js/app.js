@@ -11,8 +11,12 @@ function setupGame() {
   let score = 0
   const startButton = document.querySelector('.start')
   let startGame = null
-  let endGame = null
-
+  const enemyLaserInterval = []
+  const laserInterval = []
+  const moveAliensInterval = []
+  let gameIsEnding = false
+  let newGame = false
+  let alienMove = 1
 
 
 
@@ -24,42 +28,45 @@ function setupGame() {
 
 
   startGame = function () {
-
+    newGame = true
     startButton.style.display = 'none'
 
+
+    //creates grid ========================================
+    for (let i = 0; i < gridSize; i++) {
+      const cell = document.createElement('div')
+      grid.appendChild(cell)
+      cells.push(cell)
+    }
+
+
+    // Adds player ========================================
+    cells[player].classList.add('player')
+
+
+    // Adds aliens to grid =====================================
+    aliens.forEach(element => {
+      cells[element].classList.add('aliens')
+    })
 
     // MOVE ALIENS ===============================================================
 
     function moveAliens() {
-      let alienMove = 1
-      const moveAliensInterval = setInterval(() => {
-        debugger;
+      const moveAliens = setInterval(() => {
+        // debugger;
         for (let alien = aliens.length - 1; alien >= 0; --alien) {
           cells[aliens[alien]].classList.remove('aliens')
           aliens[alien] += alienMove
           cells[aliens[alien]].classList.add('aliens')
         }
 
-
-        //WHY DOESN'T THIS WORK?
-        // aliens.forEach((alien) => {
-        //   cells[aliens[alien]].classList.remove('aliens')
-        //   aliens[alien] += alienMove
-        //   cells[aliens[alien]].classList.add('aliens')
-        // })
-
-
         // left wall is true if the position of first alien in array is divisible by width. e.g if first alien in array is 42 then / 21 = true
         const leftWall = aliens[0] % width === 0
-
 
         //right wall is true if last alien in array is divisible by width and leaves a remainder of width -1 (because width array starts at 0) and 
         const rightWall = aliens[aliens.length - 1] % width === width - 1
         // console.log(aliens[aliens.length - 1])
         // console.log(aliens[aliens.length - 1] % width)
-
-
-
 
         //move the aliens down if leftWall is true and the previous move was left or if rightWall is true and previous move was right
         if ((leftWall && alienMove === -1) || (rightWall && alienMove === 1)) {
@@ -72,51 +79,22 @@ function setupGame() {
         }
 
         if (aliens.some(alien => alien >= 420)) {
-          alert('You have lost the game!')
+          cells[player].classList.remove('player')
+          cells[player].classList.add('explosion')
+          defeat()
           clearInterval(moveAliensInterval)
         }
-
-      }, 500)
+        moveAliensInterval.push(moveAliens)
+      }, 1000)
     }
     moveAliens()
 
 
-
-
-
-
-
-    //creates grid ========================================
-    for (let i = 0; i < gridSize; i++) {
-      const cell = document.createElement('div')
-      grid.appendChild(cell)
-      cells.push(cell)
-    }
-
-
-
-    // Adds player ========================================
-    cells[player].classList.add('player')
-
-
-
-
-    // Adds aliens to grid =====================================
-    aliens.forEach(element => {
-      cells[element].classList.add('aliens')
-    })
-
-    // SCORE ======================================================
-
-    function addScore() {
-      score += 25
-      return scoreBoard.innerHTML = `SCORE: ${score}`
-    }
-
-
-
     // Adds event listeners for user key input ===================================
     document.addEventListener('keyup', (e) => {
+      if (gameIsEnding || newGame === false) {
+        return
+      }
       switch (e.keyCode) {
         case 37: {
           if (player === 420 || player === 399) {
@@ -159,11 +137,13 @@ function setupGame() {
 
     })
 
-
     // FIRES ENEMY LASERS ================================================
-    let enemyLaserInterval = []
+
 
     const chooseEnemyLaser = setInterval(() => {
+      if (newGame === false) {
+        return
+      }
       const enemyLaserFront = aliens.slice(-10)
       let enemyLaser = enemyLaserFront[Math.floor(Math.random() * enemyLaserFront.length)] + width
       cells[enemyLaser].classList.add('enemylaser')
@@ -179,7 +159,8 @@ function setupGame() {
           cells[player].classList.add('explosion')
           setTimeout(() => {
             cells[player].classList.remove('explosion')
-          }, 200)
+          }, 1500)
+          defeat()
         } else if (enemyLaser >= 420) {
           clearInterval(enemyLaserTimer)
           setTimeout(() => {
@@ -192,14 +173,15 @@ function setupGame() {
       //console.log(enemyLaserInterval)
     }, 500)
 
-
-
     // FIRE LASER ===================================================
-    const laserInterval = []
+
 
     document.addEventListener('keydown', firePlayerLaser)
 
     function firePlayerLaser(e) {
+      if (gameIsEnding || newGame === false) {
+        return
+      }
       if (e.keyCode === 32) {
         let playerLaser = [player - width]  //sets the laser
         cells[playerLaser].classList.add('playerlaser')
@@ -227,24 +209,65 @@ function setupGame() {
       }
     }
 
+    // SCORE ======================================================
 
-
-
-
-    // CLEARING INTERVALS =========================================================
-
-
-
-
-
-
-
-
-
-
+    function addScore() {
+      score += 25
+      return scoreBoard.innerHTML = `SCORE: ${score}`
+    }
 
 
   }
+
+
+  // CLEAR INTERVALS ==========================================
+  function stopIntervals() {
+    if (newGame === true) {
+      return
+    }
+    enemyLaserInterval.forEach(interval => clearInterval(interval))
+    laserInterval.forEach(interval => clearInterval(interval))
+    clearInterval(moveAliensInterval)
+    cells.forEach(cell => cell.classList.remove('aliens', 'player', 'playerlaser', 'enemylaser'))
+    cells.forEach(cell => cell.style.display = 'none')
+  }
+
+
+
+
+
+  // VICTORY =======================================================
+
+  const victory = function () {
+    cells.forEach(cell => cell.classList.remove('aliens', 'player', 'playerlaser', 'enemylaser'))
+    cells.forEach(cell => cell.style.display = 'none')
+    alienMove = 0
+  }
+
+  if (aliens.length === 0) {
+    victory()
+  }
+
+
+  // DEFEAT =====================================================
+
+  const defeat = function () {
+    gameIsEnding = true
+    setTimeout(() => {
+      stopIntervals()
+      startButton.style.display = 'inline'
+      newGame = false
+      startButton.addEventListener('click', () => {
+        startGame()
+      })
+    }, 2000)
+  }
+
+
+
+
+
+
 }
 
 
