@@ -15,27 +15,34 @@ body {
 
 .grid {
   font-family: 'VT323', monospace;
-  color: yellow;
+  color: #feda4a;
   background-color:black;
   background-image: url(../assets/Starrysky.jpg);
-  background-size: 200vh;
+  background-size: cover;
+  background-repeat: no-repeat;
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgb(248, 215, 30);
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 110vh;
-  max-width: 110vh;
+  max-height: 95vh;
+  max-width: 95vh;
 }
 
 .grid h1{
   font-size: 500%;
 }
 
+
 .grid h2{
+  text-align: center;
   animation: blinker 1s linear infinite;
+}
+
+.GameOver {
+  color: red
 }
 
 @keyframes blinker {
@@ -57,21 +64,23 @@ body {
   }
 
   .score {
-    color: yellow;
-    font-family: 'VT323', monospace;
-    margin: 2%;
-    padding: 1%;
-    border: 1px solid yellow;
+    margin: 1%;
+    /* border: 1px solid yellow; */
     align-items: left;
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
-    justify-content: space-between;
     max-height: 30vh;
-    max-width: 22.5vh;
+    max-width: 10vh;
   }
   
+  .score h2 {
+    margin-top: 0%;
+    color:  #feda4a;
+    font-family: 'VT323', monospace;
+
+  }
 
 
 .grid div {
@@ -112,6 +121,435 @@ body {
   background-image: url(../assets/EnemyLaser.png);
   background-size: 38%;
   background-repeat: space;
-  /* background-position-x: 20%;
-  background-position-y: 5%; */
 }
+
+.grid div.bosslaser {
+  background-image: url(../assets/EnemyLaser.png);
+  background-size: 70%;
+  background-repeat: none;
+}
+
+.grid div.boss1 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship1.png);
+  background-size: 100%;
+  -webkit-animation: fadein 5s; 
+  -moz-animation: fadein 5s; 
+   -ms-animation: fadein 5s; 
+    -o-animation: fadein 5s; 
+       animation: fadein 5s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+
+
+.grid div.boss2 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship2.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+
+  -webkit-animation: fadein 5s; 
+  -moz-animation: fadein 5s; 
+   -ms-animation: fadein 5s; 
+    -o-animation: fadein 5s; 
+       animation: fadein 5s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+  
+
+
+
+.grid div.boss3 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship3.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  - -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+
+.grid div.boss4 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship4.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+
+
+.grid div.boss5 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship5.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+
+.grid div.boss6 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship6.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss7 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship7.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss8 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship8.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss9 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship9.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss10 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship10.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss11 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship11.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss12 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship12.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss13 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship13.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss14 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship14.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss15 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship15.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+.grid div.boss16 {
+  background-image: url(../assets/cut_images_who3uMbbCs0pv0/bosship16.png);
+  background-size: 100%;
+  /* background-position-x: 50%;
+  background-position-y: 50%; */
+  
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s; 
+   -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+       animation: fadein 2s;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+
+
+

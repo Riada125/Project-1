@@ -10,19 +10,43 @@
   
   
   <body>
+    <audio id="playerlasersound" src="assets/playerlasersound.wav"></audio>
+    <audio id="enemylasersound" src="assets/tiefightersound.wav"></audio>
+    <audio id="enemyflyingsound" src="assets/enemyflyingsound.wav"></audio>
+    <audio id="explosion" src="assets/explosion.wav"></audio>
+    <audio id="playerexplosion" src="assets/playerexplosion.wav"></audio>
+    <audio id="nomoon" src="assets/thisisnomoon.m4a"></audio>
+    <audio id="bosstheme" src="assets/Bosstheme.m4a"></audio>
+    <audio id="playernoise" src="assets/playernoise.wav"></audio>
+
     <section class="score">
-      <h2>SCORE: 0</h2>
+      <h2></h2>
+      <h2 class="bosshealth"></h2>
     </section>
+   
     <div class="grid">
-    <section class = "start">
+
+      <section class = "start">
+          
+
     <h1>SPACE WARS</h1> 
-    <h2>Press Enter to Start</h2>
+    <h3>Use left and right keys to move and space bar to fire lasers</h3>
+    <h2>Click to Start</h2>
     </section>
+
+    <section class="victory">
+  <h1>VICTORY!</h1>
+  <h2 class="winningscore"></h2>
+  <h2>Click to Restart</h2>
+    </section>
+
 <section class="GameOver">
     <h1>GAME OVER</h1> 
     <h2 class="finalscore"></h2>
-    <h2>Press Enter to Restart</h2>
-</section>
-    </div>
+    <h2>Click to Restart</h2>
+
+  </section>
+   
+</div>
   </body>
 </html>
