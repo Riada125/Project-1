@@ -4,20 +4,36 @@ function setupGame() {
   const width = 21
   const gridSize = width ** 2
   const grid = document.querySelector('.grid')
-  const altGrid = document.querySelector('.hyperspace')
   let cell = []
   let cells = []
   let player = 409
   let aliens = []
+  let enemyLaserInterval = []
 
+  // start and end game variables
+  const startButton = document.querySelector('.start')
+  const gameOverMessage = document.querySelector('.GameOver')
+  const victoryMessage = document.querySelector('.victory')
+  const finalScore = document.querySelector('.finalscore')
+  const winningScore = document.querySelector('.winningscore')
+  let startGame = null
+  let gameIsEnding = false
+  let gameOver = false
+  let newGame = false
 
+  // declare scoreboard variables
+  const scoreBoard = document.querySelector('.score h2')
+  let score = 0
+
+  // alien movement variables
+  let alienMove = 0
+
+  //declare boss elements
   let bossBattle = []
   let finalBattle = false
   let bossHealth = 500
-
-  let bossHealthID = document.querySelector('.bosshealth')
-
-
+  let bossMove = []
+  const bossHealthID = document.querySelector('.bosshealth')
   const bossShip = [
     {
       position: 97,
@@ -84,25 +100,6 @@ function setupGame() {
       id: 'boss1'
     }
   ]
-
-  // declare scoreboard variables
-  const scoreBoard = document.querySelector('.score h2')
-  let score = 0
-
-  // start and end game variables
-  const startButton = document.querySelector('.start')
-  const gameOverMessage = document.querySelector('.GameOver')
-  const victoryMessage = document.querySelector('.victory')
-  const finalScore = document.querySelector('.finalscore')
-  const winningScore = document.querySelector('.winningscore')
-  let startGame = null
-  let gameIsEnding = false
-  let gameOver = false
-  let newGame = false
-
-  // alien movement variables
-  let alienMove = 0
-
   // add audio event listeners
   const playerLaserSound = document.querySelector('#playerlasersound')
   const enemyLaserSound = document.querySelector('#enemylasersound')
@@ -115,19 +112,22 @@ function setupGame() {
   const noMoon = document.querySelector('#nomoon')
   const bossTheme = document.querySelector('#bosstheme')
   const playerNoise = document.querySelector('#playernoise')
+  const themeMusic = document.querySelector('#thememusic')
 
   // hide end messages at launch
   gameOverMessage.style.display = 'none'
   victoryMessage.style.display = 'none'
   scoreBoard.style.display = 'none'
 
-  let enemyLaserInterval = []
-  let bossMove = []
+
+
 
 
   // START GAME ===================================
   startButton.addEventListener('click', () => {
     startGame()
+    themeMusic.volume = 0.8
+    themeMusic.play()
   })
 
   startGame = function () {
@@ -144,12 +144,12 @@ function setupGame() {
     aliens = [22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103]
     alienMove = 1
 
+    // play enemy flying sounds on a loop
     enemyFlyingSound.play()
 
     enemyFlyingSoundTimer = setInterval(() => {
       enemyFlyingSound.play()
     }, 10000)
-
     //creates grid ========================================
     if (newGame === true) {
       for (let i = 0; i < gridSize; i++) {
@@ -158,16 +158,13 @@ function setupGame() {
         cells.push(cell)
       }
     }
-    // Adds player ========================================
+    // Adds player to grid ========================================
     cells[player].classList.add('player')
-
     // Adds aliens to grid =====================================
     aliens.forEach(element => {
       cells[element].classList.add('aliens')
     })
-
-
-    // Adds Boss ship ============================================
+    // Adds Boss ship  and battle function ============================================
     bossBattle = function () {
       bossHealth = 500
       bossHealth = Math.max(0, bossHealth)
@@ -206,12 +203,8 @@ function setupGame() {
           }
         })
       }, 600)
-
-
-
     }
-
-    // MOVE ALIENS LOGIC ========================================
+    // MOVE ALIENS========================================
     const alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
         clearInterval(alienMovement)
@@ -238,7 +231,6 @@ function setupGame() {
         if (leftWall) alienMove = 1
         else alienMove = -1
       }
-
       if (aliens.some(alien => alien >= 420)) {
         aliens = 420
         cells[player].classList.remove('player')
@@ -246,7 +238,6 @@ function setupGame() {
         defeat()
         return
       }
-
       if (aliens.length === 0) {
         bossBattle()
         clearInterval(alienMovement)
@@ -272,9 +263,7 @@ function setupGame() {
         cells[enemyLaser].classList.remove('enemylaser')
         enemyLaser += width
         cells[enemyLaser].classList.add('enemylaser')
-        // if (cells[enemyLaser].classList.contains('aliens') === true) {
-
-        // }
+        // if (cells[enemyLaser].classList.contains('aliens') === true) { }
         if (cells[enemyLaser].classList.contains('player') === true) {
           clearInterval(enemyLaserTimer)
           cells[enemyLaser].classList.remove('enemylaser', 'player')
@@ -294,10 +283,6 @@ function setupGame() {
       }, 150)
     }, 300)
   }
-
-
-
-
   // CLEAR INTERVALS ==========================================
   function stopIntervals() {
     clearInterval(enemyLaserInterval)
@@ -308,7 +293,6 @@ function setupGame() {
       grid.removeChild(cell)
     })
     cells = []
-    cell = []
     return
   }
   // VICTORY =======================================================
@@ -335,8 +319,6 @@ function setupGame() {
       newGame = true
       gameOver = false
       finalBattle = false
-
-
     })
   }
   // DEFEAT =====================================================
@@ -364,7 +346,7 @@ function setupGame() {
   }
   // Adds event listeners for user key input ===================================
   document.addEventListener('keyup', (e) => {
-    if (gameIsEnding) {
+    if (gameIsEnding || newGame === false) {
       return
     }
     switch (e.keyCode) {
@@ -420,33 +402,20 @@ function setupGame() {
       }
     }
   })
-
-
   // SCORE ======================================================
   function addScore() {
     score += 25
     return scoreBoard.innerHTML = `SCORE: ${score}`
   }
-
-
   // BOSS SCORE =======================================
-
   function bossScore() {
     score += 100
     bossHealth -= 10
     return bossHealthID.innerHTML = `DEATH STAR HEALTH: ${bossHealth}`
-
   }
-
   // score reset ==================================
-
   function scoreReset() {
     score = 0
   }
-
-
-
 }
-
-
 document.addEventListener('DOMContentLoaded', setupGame)
