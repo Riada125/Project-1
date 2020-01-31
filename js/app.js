@@ -120,9 +120,6 @@ function setupGame() {
   scoreBoard.style.display = 'none'
 
 
-
-
-
   // START GAME ===================================
   startButton.addEventListener('click', () => {
     startGame()
@@ -150,6 +147,8 @@ function setupGame() {
     enemyFlyingSoundTimer = setInterval(() => {
       enemyFlyingSound.play()
     }, 10000)
+
+
     //creates grid ========================================
     if (newGame === true) {
       for (let i = 0; i < gridSize; i++) {
@@ -158,8 +157,10 @@ function setupGame() {
         cells.push(cell)
       }
     }
+
     // Adds player to grid ========================================
     cells[player].classList.add('player')
+    
     // Adds aliens to grid =====================================
     aliens.forEach(element => {
       cells[element].classList.add('aliens')
@@ -243,6 +244,8 @@ function setupGame() {
         clearInterval(alienMovement)
       }
     }, 1000)
+
+    
     // FIRES ENEMY LASERS ================================================
     enemyLaserInterval = setInterval(() => {
       if (gameIsEnding === true || gameOver === true || finalBattle === true) {
