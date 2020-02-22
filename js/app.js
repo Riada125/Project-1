@@ -16,6 +16,7 @@ function setupGame() {
   const victoryMessage = document.querySelector('.victory')
   const finalScore = document.querySelector('.finalscore')
   const winningScore = document.querySelector('.winningscore')
+  let alienMovement = 0
   let startGame = null
   let gameIsEnding = false
   let gameOver = false
@@ -128,9 +129,13 @@ function setupGame() {
   })
 
   startGame = function () {
+
     if (gameOver === true && newGame === false) {
+      stopIntervals()
+      
       return
     }
+    stopIntervals()
     newGame = true
     gameIsEnding = false
     startButton.style.display = 'none'
@@ -160,7 +165,7 @@ function setupGame() {
 
     // Adds player to grid ========================================
     cells[player].classList.add('player')
-    
+
     // Adds aliens to grid =====================================
     aliens.forEach(element => {
       cells[element].classList.add('aliens')
@@ -206,7 +211,7 @@ function setupGame() {
       }, 600)
     }
     // MOVE ALIENS========================================
-    const alienMovement = setInterval(() => {
+    alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
         clearInterval(alienMovement)
         return
@@ -245,7 +250,7 @@ function setupGame() {
       }
     }, 1000)
 
-    
+
     // FIRES ENEMY LASERS ================================================
     enemyLaserInterval = setInterval(() => {
       if (gameIsEnding === true || gameOver === true || finalBattle === true) {
@@ -288,6 +293,7 @@ function setupGame() {
   }
   // CLEAR INTERVALS ==========================================
   function stopIntervals() {
+    clearInterval(alienMovement)
     clearInterval(enemyLaserInterval)
     clearInterval(enemyFlyingSoundTimer)
     clearInterval(bossMove)
