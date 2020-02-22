@@ -41,7 +41,7 @@
 
 ### The Grid
 
-![] (assets/screenshots/Grid Screenshot.png)
+![](./assets/screenshots/Grid Screenshot.png)
 
  ```js
   const width = 21
@@ -64,7 +64,7 @@
  
 ### Opponent Movement
 
-![] (assets/screenshots/Screenshot1.png)
+![](./assets/screenshots/Screenshot1.png)
  
  ```js
      const alienMovement = setInterval(() => {
@@ -110,8 +110,8 @@
  
 ### 'The Boss'
 
-![] (assets/screenshots/Boss1 Screenshot.png)
-![] (assets/screenshots/Boss2 Screenshot.png)
+![](./assets/screenshots/Boss1Screenshot.png)
+![](./assets/screenshots/Boss2Screenshot.png)
 
 
 
