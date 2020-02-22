@@ -64,7 +64,7 @@
  
 ### Opponent Movement
 
-![] (assets/screenshots/Screenshot1.png)
+![](./assets/screenshots/Screenshot1.png)
  
  ```js
      const alienMovement = setInterval(() => {
