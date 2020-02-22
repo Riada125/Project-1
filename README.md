@@ -110,8 +110,8 @@
  
 ### 'The Boss'
 
-![] (assets/screenshots/Boss1 Screenshot.png)
-![] (assets/screenshots/Boss2 Screenshot.png)
+![](assets/screenshots/Boss1 Screenshot.png)
+![](assets/screenshots/Boss2 Screenshot.png)
 
 
 
