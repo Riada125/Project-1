@@ -41,7 +41,7 @@
 
 ### The Grid
 
-![](assets/screenshots/Grid Screenshot.png)
+![](./assets/screenshots/Grid Screenshot.png)
 
  ```js
   const width = 21
@@ -110,8 +110,8 @@
  
 ### 'The Boss'
 
-![](assets/screenshots/Boss1 Screenshot.png)
-![](assets/screenshots/Boss2 Screenshot.png)
+![](./assets/screenshots/Boss1 Screenshot.png)
+![](./assets/screenshots/Boss2 Screenshot.png)
 
 
 
