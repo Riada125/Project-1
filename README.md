@@ -41,7 +41,7 @@
 
 ### The Grid
 
-![] (assets/screenshots/Grid Screenshot.png)
+![](assets/screenshots/Grid Screenshot.png)
 
  ```js
   const width = 21
