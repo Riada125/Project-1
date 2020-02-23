@@ -2,6 +2,7 @@
 # SPACE WARS <img src= assets/Explosion.png height=50 width=50 />
 
 ## Overview
+****Coming soon****
 
 
 ## Brief
@@ -117,12 +118,16 @@
 
 
 ## Challenges
+****Coming soon****
 
 
 ## Victories 
+****Coming soon****
 
 
 
 ## Potential future features
+****Coming soon****
 
 ## Lessons learned
+****Coming soon****
