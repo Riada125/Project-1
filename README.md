@@ -63,6 +63,8 @@ Enemy ship movement is defined as a global variable of 1. Using a setInterval fu
 I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
+Here I defined a setInterval called alienMovement. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the alienMove variable and then re-adds the alien.
+
  ```js
      const alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
@@ -74,14 +76,21 @@ I had originally opted to use an ES6 Array method to cycle through the array of 
         aliens[alien] += alienMove
         cells[aliens[alien]].classList.add('aliens')
       }
+      
+ ```
 
- 
-      const leftWall = aliens[0] % width === 0
+Here, I defined the left and right walls of the grid:
+
+```js
+  const leftWall = aliens[0] % width === 0
+  const rightWall = aliens[aliens.length - 1] % width === width - 1
+```
 
 
-      const rightWall = aliens[aliens.length - 1] % width === width - 1
 
-  
+Using the defined left and right walls, I reassigned alienMove (the direction that each element of the alien array would move in) based on movement in relation to the walls. If the length of the alien array is zero, the boss battle begins. 
+
+```js
       if ((leftWall && alienMove === -1) || (rightWall && alienMove === 1)) {
         alienMove = width
       } else if (alienMove === width) {
@@ -99,19 +108,27 @@ I had originally opted to use an ES6 Array method to cycle through the array of 
         bossBattle()
         clearInterval(alienMovement)
       }
-    }, 1000)
+```
  
  
- ```
+
 ### Opponent Lasers
 
 Enemy lasers are fired every 300 millisecond using a setInterval. The firing position is randomly determined using Math.random based on the position of the 10 aliens that are furthest forward. The .slice(-10) method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
 
-```
+
+Below, a setInterval is declared. It contains a variable that finds the front 10 of our array of alien ships. enemyLaser is then a variable that selects a random position in front of those ships to fire. 
+
+```js
 enemyLaserInterval = setInterval(() => {
       const enemyLaserFront = aliens.slice(-10)
       let enemyLaser = enemyLaserFront[Math.floor(Math.random() * enemyLaserFront.length)] + width
-      
+```
+
+
+The enemyLaser CSS class is added to the cell in front of the random ship, a sound plays and another setInterval is declared that adds and removes the CSS class until there is collision with the player or the enemy laser reaches the end of the grid. If the enemy laser collides with the player, the player is replaced by an explosion CSS class and the game ends. 
+
+```js
       cells[enemyLaser].classList.add('enemylaser')
       enemyLaserSound.play()
       const enemyLaserTimer = setInterval(() => {
