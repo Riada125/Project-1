@@ -58,9 +58,23 @@ The game is built using a grid. A 21 x 21 square is created using JavaScript. HT
  
 ### Opponent Movement
 
+Enemy ships are defined as an array of numbers which corresponds to their position on the grid:
+
+```js
+aliens = [22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103]
+```
+
+They are then added to the grid using a forEach statement
+
+```js
+ aliens.forEach(element => {
+      cells[element].classList.add('aliens')
+    })
+```
+
 Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
 
-I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
+I had originally opted to use an ES6 forEach Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
 Here I defined a setInterval called alienMovement. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the alienMove variable and then re-adds the alien.
@@ -166,6 +180,16 @@ The enemyLaser CSS class is added to the cell in front of the random ship, a sou
  
 
 ![](./assets/screenshots/Screenshot1.png)
+
+### The Player
+The player is a variable defined with a number, which related to its position on the grid:
+
+```js
+ let player = 409
+
+```
+
+
  
 
  
