@@ -17,7 +17,6 @@ function setupGame() {
   const finalScore = document.querySelector('.finalscore')
   const winningScore = document.querySelector('.winningscore')
   let alienMovement = 0
-  let startGame = null
   let gameIsEnding = false
   let gameOver = false
   let newGame = false
@@ -30,10 +29,8 @@ function setupGame() {
   let alienMove = 0
 
   //declare boss elements
-  let bossBattle = []
   let finalBattle = false
   let bossHealth = 500
-  let bossMove = []
   const bossHealthID = document.querySelector('.bosshealth')
   const bossShip = [
     {
@@ -128,11 +125,11 @@ function setupGame() {
     themeMusic.play()
   })
 
-  startGame = function () {
+  const startGame = function () {
 
     if (gameOver === true && newGame === false) {
       stopIntervals()
-      
+
       return
     }
     stopIntervals()
@@ -170,10 +167,10 @@ function setupGame() {
     aliens.forEach(element => {
       cells[element].classList.add('aliens')
     })
+
     // Adds Boss ship  and battle function ============================================
-    bossBattle = function () {
+    const bossBattle = function () {
       bossHealth = 500
-      bossHealth = Math.max(0, bossHealth)
       bossHealthID.innerHTML = `DEATH STAR HEALTH: ${bossHealth}`
       clearInterval(enemyFlyingSoundTimer)
       finalBattle = true
@@ -186,11 +183,6 @@ function setupGame() {
       }, 1000)
 
       const bossMovement = setInterval(() => {
-        if (gameOver) {
-          clearInterval(bossMovement)
-          return
-        }
-
         if (bossHealth <= 0) {
           clearInterval(bossMovement)
           victory()
@@ -210,6 +202,8 @@ function setupGame() {
         })
       }, 600)
     }
+
+    
     // MOVE ALIENS========================================
     alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
@@ -271,7 +265,6 @@ function setupGame() {
         cells[enemyLaser].classList.remove('enemylaser')
         enemyLaser += width
         cells[enemyLaser].classList.add('enemylaser')
-        // if (cells[enemyLaser].classList.contains('aliens') === true) { }
         if (cells[enemyLaser].classList.contains('player') === true) {
           clearInterval(enemyLaserTimer)
           cells[enemyLaser].classList.remove('enemylaser', 'player')
@@ -291,13 +284,14 @@ function setupGame() {
       }, 150)
     }, 300)
   }
+
+
+
   // CLEAR INTERVALS ==========================================
   function stopIntervals() {
     clearInterval(alienMovement)
     clearInterval(enemyLaserInterval)
     clearInterval(enemyFlyingSoundTimer)
-    clearInterval(bossMove)
-    bossMove = []
     cells.forEach(cell => {
       grid.removeChild(cell)
     })

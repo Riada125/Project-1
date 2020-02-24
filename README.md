@@ -42,7 +42,7 @@
 
 ### The Grid
 
-![](./assets/screenshots/GridScreenshot.png)
+The game is built using a grid. A 21 x 21 square is created using JavaScript. HTML divs are created using a for loop and appended as children of the grid.
 
  ```js
   const width = 21
@@ -62,11 +62,16 @@
       }
     }
  ```
+ ![](./assets/screenshots/GridScreenshot.png)
+ 
  
 ### Opponent Movement
 
-![](./assets/screenshots/Screenshot1.png)
- 
+Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left, until the left-most alien encounters the defined left wall and the movement is mirrored. 
+
+I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a for loop to move backwards through the array so that the ships in front moved forward first. 
+
+
  ```js
      const alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
@@ -107,6 +112,10 @@
  
  
  ```
+
+![](./assets/screenshots/Screenshot1.png)
+ 
+
  
  
 ### 'The Boss'
