@@ -2,7 +2,13 @@
 # SPACE WARS <img src= assets/Explosion.png height=50 width=50 />
 
 ## Overview
-****Coming soon****
+Space Wars is my first ever front-end development project, produced as part of General Assembly's Immersive Software Engineering Bootcamp. 
+
+My task was to create a grid-based game rendered in the browser that utilised 'vanilla' JavaScript, HTML and CSS.
+
+Given a selection of classic arcade games to choose from, I opted to build my take on _Space Invaders_ - with a theme inspired by the _Star Wars_ film saga and using Pixel art to evoke the sense of a typical arcade game. The broken, tuneless music used is to reflect the low-budget 'knock-off' feel of the game.
+
+The project was mainly to consolidate knowledge my beginners' knowledge of JavaScript and interacting with the DOM but I worked hard to make it a fun experience to play. 
 
 
 ## The Brief
@@ -74,10 +80,10 @@ They are then added to the grid using a forEach statement
 
 Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
 
-I had originally opted to use an ES6 forEach Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
+I had originally opted to use an ES6 `forEach` Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear into the ship in front as they were being moved down. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
-Here I defined a setInterval called alienMovement. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the alienMove variable and then re-adds the alien.
+Here I defined a `setInterval` called `alienMovement`. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the `alienMove` variable and then re-adds the alien.
 
  ```js
      const alienMovement = setInterval(() => {
@@ -93,7 +99,7 @@ Here I defined a setInterval called alienMovement. It loops backwards through th
       
  ```
 
-Here, I defined the left and right walls of the grid:
+Below is how I defined the left and right walls of the grid. The left wall is defined by checking if the left-most alien is exactly divisible by the width, whilst the right wall is defined by checking if the right-most alien is exactly divisble by the width -1:
 
 ```js
   const leftWall = aliens[0] % width === 0
