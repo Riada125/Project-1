@@ -51,6 +51,8 @@ The game is built using a grid. A 21 x 21 square is created using JavaScript. HT
       }
     }
  ```
+ During actual gameplay, the grid is invisible. But highlighed below for demonstration purposes:
+ 
  ![](./assets/screenshots/GridScreenshot.png)
  
  
@@ -160,7 +162,10 @@ enemyLaserInterval = setInterval(() => {
 
 
 ## Challenges
-****Coming soon****
+- This was my first frontend JavaScript project and assembling all of my knowledge on arrays, control flow, functions and intervals and applying them to an entirely blank canvas was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have left it like this as an indication of what I was capable of 
+
+- Moving the alien ships was the greatest difficulty for this project. Using methods I had learned
+
 
 
 ## Victories 
