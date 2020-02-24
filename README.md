@@ -58,7 +58,7 @@ The game is built using a grid. A 21 x 21 square is created using JavaScript. HT
 
 Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
 
-I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a for loop to move backwards through the array so that the ships in front moved forward first. 
+I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
  ```js
@@ -102,6 +102,8 @@ I had originally opted to use an ES6 Array method to cycle through the array of 
  
  ```
 ### Opponent Lasers
+
+Enemy lasers are fired every 300 millisecond using a setInterval. The firing position is randomly determined using Math.random based on the position of the 10 aliens that are furthest forward. The .slice(-10) method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
 
 ```
 enemyLaserInterval = setInterval(() => {

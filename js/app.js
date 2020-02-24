@@ -118,7 +118,7 @@ function setupGame() {
   scoreBoard.style.display = 'none'
 
 
-  // START GAME ===================================
+  // START GAME =============================================================================================
   startButton.addEventListener('click', () => {
     startGame()
     themeMusic.volume = 0.8
@@ -151,7 +151,7 @@ function setupGame() {
     }, 10000)
 
 
-    //creates grid ========================================
+    //creates grid ==========================================================================================
     if (newGame === true) {
       for (let i = 0; i < gridSize; i++) {
         cell = document.createElement('div')
@@ -168,7 +168,7 @@ function setupGame() {
       cells[element].classList.add('aliens')
     })
 
-    // Adds Boss ship  and battle function ============================================
+    // Adds Boss ship  and battle function ==================================================================
     const bossBattle = function () {
       bossHealth = 500
       bossHealthID.innerHTML = `DEATH STAR HEALTH: ${bossHealth}`
@@ -203,8 +203,8 @@ function setupGame() {
       }, 600)
     }
 
-    
-    // MOVE ALIENS========================================
+
+    // MOVE ALIENS============================================================================================
     alienMovement = setInterval(() => {
       if (gameIsEnding === true || gameOver === true) {
         clearInterval(alienMovement)
@@ -245,7 +245,7 @@ function setupGame() {
     }, 1000)
 
 
-    // FIRES ENEMY LASERS ================================================
+    // FIRES ENEMY LASERS ====================================================================================
     enemyLaserInterval = setInterval(() => {
       if (gameIsEnding === true || gameOver === true || finalBattle === true) {
         return
@@ -287,7 +287,7 @@ function setupGame() {
 
 
 
-  // CLEAR INTERVALS ==========================================
+  // CLEAR INTERVALS =========================================================================================
   function stopIntervals() {
     clearInterval(alienMovement)
     clearInterval(enemyLaserInterval)
@@ -298,7 +298,7 @@ function setupGame() {
     cells = []
     return
   }
-  // VICTORY =======================================================
+  // VICTORY ================================================================================================
   const victory = function () {
     playerNoise.play()
     newGame = false
@@ -324,7 +324,7 @@ function setupGame() {
       finalBattle = false
     })
   }
-  // DEFEAT =====================================================
+  // DEFEAT =================================================================================================
   const defeat = function () {
     scoreBoard.style.display = 'none'
     newGame = false
@@ -347,7 +347,7 @@ function setupGame() {
 
     })
   }
-  // Adds event listeners for user key input ===================================
+  // Adds event listeners for user key input ================================================================
   document.addEventListener('keyup', (e) => {
     if (gameIsEnding || newGame === false) {
       return
@@ -405,18 +405,18 @@ function setupGame() {
       }
     }
   })
-  // SCORE ======================================================
+  // SCORE ==================================================================================================
   function addScore() {
     score += 25
     return scoreBoard.innerHTML = `SCORE: ${score}`
   }
-  // BOSS SCORE =======================================
+  // BOSS SCORE =============================================================================================
   function bossScore() {
     score += 100
     bossHealth -= 10
     return bossHealthID.innerHTML = `DEATH STAR HEALTH: ${bossHealth}`
   }
-  // score reset ==================================
+  // score reset ============================================================================================
   function scoreReset() {
     score = 0
   }
