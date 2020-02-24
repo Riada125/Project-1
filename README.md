@@ -5,17 +5,6 @@
 ****Coming soon****
 
 
-## Brief
-
-- **Render a game in the browser**
-- **Design logic for winning & visually display which player won**
-- **Include separate HTML / CSS / JavaScript files**
-- Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-- Use **Javascript** for **DOM manipulation**
-- **Deploy your game online**, where the rest of the world can access it
-- Use **semantic markup** for HTML and CSS (adhere to best practices)
-
-
 ## The Brief
 
 - **Render a game in the browser**
@@ -67,7 +56,7 @@ The game is built using a grid. A 21 x 21 square is created using JavaScript. HT
  
 ### Opponent Movement
 
-Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left, until the left-most alien encounters the defined left wall and the movement is mirrored. 
+Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
 
 I had originally opted to use an ES6 Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, meaning that rows of ships would disappear as they were being moved down into the ship in front. I corrected this by utilising a for loop to move backwards through the array so that the ships in front moved forward first. 
 
@@ -112,6 +101,48 @@ I had originally opted to use an ES6 Array method to cycle through the array of 
  
  
  ```
+### Opponent Lasers
+
+```
+enemyLaserInterval = setInterval(() => {
+      const enemyLaserFront = aliens.slice(-10)
+      let enemyLaser = enemyLaserFront[Math.floor(Math.random() * enemyLaserFront.length)] + width
+      
+      cells[enemyLaser].classList.add('enemylaser')
+      enemyLaserSound.play()
+      const enemyLaserTimer = setInterval(() => {
+        if (aliens.some(alien => alien >= 400)) {
+          cells[enemyLaser].classList.remove('enemylaser')
+          clearInterval(enemyLaserTimer)
+          return
+        } else if (gameOver === true) {
+          clearInterval(enemyLaserTimer)
+        }
+        cells[enemyLaser].classList.remove('enemylaser')
+        enemyLaser += width
+        cells[enemyLaser].classList.add('enemylaser')
+        if (cells[enemyLaser].classList.contains('player') === true) {
+          clearInterval(enemyLaserTimer)
+          cells[enemyLaser].classList.remove('enemylaser', 'player')
+          cells[player].classList.add('explosion')
+          setTimeout(() => {
+            cells[player].classList.remove('explosion')
+          }, 1500)
+          defeat()
+          clearInterval(enemyLaserTimer)
+          return
+        } else if (enemyLaser >= 420) {
+          clearInterval(enemyLaserTimer)
+          setTimeout(() => {
+            cells[enemyLaser].classList.remove('enemylaser')
+          }, 80)
+        }
+      }, 150)
+    }, 300)
+  }
+ 
+```
+ 
 
 ![](./assets/screenshots/Screenshot1.png)
  
