@@ -8,7 +8,7 @@ My task was to create a grid-based game rendered in the browser that utilised 'v
 
 Given a selection of classic arcade games to choose from, I opted to build my take on _Space Invaders_ - with a theme inspired by the _Star Wars_ film saga and using Pixel art to evoke the sense of a typical arcade game. The broken, tuneless music used is to reflect the low-budget 'knock-off' feel of the game.
 
-The project was mainly to consolidate knowledge my beginners' knowledge of JavaScript and interacting with the DOM but I worked hard to make it a fun experience to play. 
+The project was mainly to consolidate my beginners' knowledge of JavaScript and interacting with the DOM, but I worked hard to make it a fun experience to play. 
 
 
 ## The Brief
@@ -57,7 +57,7 @@ The game is built using a grid. A 21 x 21 square is created using JavaScript. HT
       }
     }
  ```
- During actual gameplay, the grid is invisible. But highlighed below for demonstration purposes:
+ During actual gameplay, the grid isn't visible, but is highlighed below for demonstration purposes:
  
  ![](./assets/screenshots/GridScreenshot.png)
  
