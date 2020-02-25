@@ -11,7 +11,7 @@ Given a selection of classic arcade games to choose from, I opted to build my ta
 The project was mainly to consolidate my beginners' knowledge of JavaScript and interacting with the DOM, but I worked hard to make it a fun experience to play. 
 
 
-## The Brief
+## The Brief 
 
 - **Render a game in the browser**
 - **Design logic for winning & visually display which player won**
@@ -78,9 +78,9 @@ They are then added to the grid using a forEach statement
     })
 ```
 
-Enemy ship movement is defined as a global variable of 1. Using a setInterval function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
+Enemy ship movement is defined as a global variable of 1. Using a `setInterval` function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
 
-I had originally opted to use an ES6 `forEach` Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear into the ship in front as they were being moved down. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
+I had originally opted to use an ES6 `forEach` Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear into the ship in front as they were being moved down in ascending order. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
 Here I defined a `setInterval` called `alienMovement`. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the `alienMove` variable and then re-adds the alien.
@@ -134,10 +134,10 @@ Using the defined left and right walls, I reassigned alienMove (the direction th
 
 ### Opponent Lasers
 
-Enemy lasers are fired every 300 millisecond using a setInterval. The firing position is randomly determined using Math.random based on the position of the 10 aliens that are furthest forward. The .slice(-10) method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
+Enemy lasers are fired every 300 millisecond using a setInterval. The firing position is randomly determined using `Math.random` based on the position of the 10 aliens that are furthest forward. The `.slice(-10)` method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
 
 
-Below, a setInterval is declared. It contains a variable that finds the front 10 of our array of alien ships. enemyLaser is then a variable that selects a random position in front of those ships to fire. 
+Below, a `setInterval` is declared. It contains a variable that finds the front 10 of our array of alien ships. `enemyLaser` is then a variable that selects a random position in front of those ships to fire. 
 
 ```js
 enemyLaserInterval = setInterval(() => {
@@ -146,7 +146,7 @@ enemyLaserInterval = setInterval(() => {
 ```
 
 
-The enemyLaser CSS class is added to the cell in front of the random ship, a sound plays and another setInterval is declared that adds and removes the CSS class until there is collision with the player or the enemy laser reaches the end of the grid. If the enemy laser collides with the player, the player is replaced by an explosion CSS class and the game ends. 
+The `enemyLaser` CSS class is added to the cell in front of the random ship, a sound plays and another setInterval is declared that adds and removes the CSS class until there is collision with the player or the enemy laser reaches the end of the grid. If the enemy laser collides with the player, the player is replaced by an explosion CSS class and the game ends. 
 
 ```js
       cells[enemyLaser].classList.add('enemylaser')
@@ -195,7 +195,79 @@ The player is a variable defined with a number, which related to its position on
 
 ```
 
+Moving the player comes from an event listener that checks for a `keyup` event on the user's keyboard. I then defined a switch statement that established whether the player's ship would move left, right or fire lasers...
 
+```js
+  document.addEventListener('keyup', (e) => {
+    if (gameIsEnding || newGame === false) {
+      return
+    }
+    switch (e.keyCode) {
+      case 37: {
+        if (player === 420 || player === 399) {
+          return
+        }
+        cells[player].classList.remove('player')
+        player = player - 1
+        cells[player].classList.add('player')
+        break
+      }
+      case 39: {
+        if (player === ((gridSize) - 1) || player === 419) {
+          return
+        }
+        cells[player].classList.remove('player')
+        player = player + 1
+        cells[player].classList.add('player')
+        break
+      }
+      case 32: {
+			...
+			
+			
+        }, 100)
+      }
+    }
+  })
+```
+
+When case 32 is called (keyup on the space bar), the player's laser fires. This includes a sound playing and the `'playerlaser'` CSS class being moved up the length of the grid, concurrent with the position of the `playerLaser` variable. This also includes logic for removing the laser and an enemy ship whilst increasing the score if there is a collision, as well as removing the player's laser if it reaches the end of the grid.
+
+```js
+      case 32: {
+        playerLaserSound.pause()
+        playerLaserSound.currentTime = 0
+        playerLaserSound.play()
+        let playerLaser = [player - width]
+        cells[playerLaser].classList.add('playerlaser')
+        const playerLaserTimer = setInterval(() => {
+          cells[playerLaser].classList.remove('playerlaser')
+          playerLaser -= width
+          if (gameOver) {
+            clearInterval(playerLaserTimer)
+          }
+          if (playerLaser <= 0) {
+            clearInterval(playerLaserTimer)
+          } else if (cells[playerLaser].classList.contains('aliens') === true) {
+            clearInterval(playerLaserTimer)
+            const alienDeath = aliens.indexOf(playerLaser)
+            aliens.splice(alienDeath, 1)
+            cells[playerLaser].classList.remove('playerlaser', 'aliens')
+            cells[playerLaser].classList.add('explosion')
+            explosionSound.pause()
+            explosionSound.currentTime = 0
+            explosionSound.play()
+            setTimeout(() => {
+              cells[playerLaser].classList.remove('explosion')
+            }, 200)
+            addScore()
+          } else if (playerLaser > -1) {
+            cells[playerLaser].classList.add('playerlaser')
+          }
+        }, 100)
+      }
+
+```
  
 
  
