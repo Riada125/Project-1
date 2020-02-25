@@ -231,7 +231,7 @@ Moving the player comes from an event listener that checks for a `keyup` event o
   })
 ```
 
-When case 32 is called (keyup on the space bar), the player's laser fires. This includes a sound playing and the `'playerlaser'` CSS class being moved up the length of the grid, concurrent with the position of the `playerLaser` variable. This also includes logic for removing the laser and an enemy ship whilst increasing the score if there is a collision, as well as removing the player's laser if it reaches the end of the grid.
+When case 32 is called (keyup on the space bar), the player's laser fires. A variable is assigned to the position that is one space in front of the player on the grid alongside an associated CSS class. This includes a sound playing and the `'playerlaser'` CSS class being moved up the length of the grid, concurrent with the position of the `playerLaser` variable. This also includes logic for removing the laser and an enemy ship whilst increasing the score if there is a collision detected, as well as removing the player's laser if it reaches the end of the grid.
 
 ```js
       case 32: {
@@ -274,26 +274,74 @@ When case 32 is called (keyup on the space bar), the player's laser fires. This 
  
 ### 'The Boss'
 
+Once I had completed the basic logic for the game, I wanted to test my new knowledge of Objects in JavaScript and so decided to include a 'boss' level - this took the form of the planet-destroying superweapon, the Death Star. 
+
+I wanted the boss ship to be significantly larger than the previous enemy ships, and so to do this I had to split the image into 16 evenly sized pieces. The boss ship is an array of 16 objects. A shortened example of how these were defined is below.
+
+```js
+ const bossShip = [
+    {
+      position: 97,
+      id: 'boss16'
+    },
+    {
+      position: 96,
+      id: 'boss15'
+    },
+    {
+      position: 95,
+      id: 'boss14'
+    },
+```
+
+As above, each object is assigned a position on the grid and a unique id. The images are then linked through CSS and given an animation to fade into view:
+
+
 ![](./assets/screenshots/Boss1Screenshot.png)
+
+
+The boss ship elements are added as through a `forEach` function as below:
+
+```js
+        bossShip.forEach(i => {
+          cells[i.position].classList.add(i.id)
+          if (cells[i.position].classList.contains('playerlaser') === true) {
+            cells[i.position].classList.remove(i.id)
+            cells[i.position].classList.add('explosion')
+            addScore()
+            bossScore()
+            playerExplosion.pause()
+            playerExplosion.currentTime = 0
+            playerExplosion.play()
+          }
+        })
+```
+
+As this is inside a `setInterval`, the elements of the ship that are removed by a `playerlaser` regenerate. This was done deliberately so that there would be an effect of multiple explosions occurring and requiring the enemy ship to take repeated damage before a `victory` function is declared. 
+
+
+
 ![](./assets/screenshots/Boss2Screenshot.png)
 
 
 
 
 ## Challenges
-- This was my first frontend JavaScript project and assembling all of my knowledge on arrays, control flow, functions and intervals and applying them to an entirely blank canvas was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have left it like this as an indication of what I was capable of 
+- This was my first frontend JavaScript project and assembling all of my knowledge on arrays, control flow, functions, timeouts and intervals and applying them to an entirely blank canvas for the first time was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have deliberately left much of it like this as way of referencing my ability and understanding at the time of creation (the project was set with a one-week timeframe). I've progressed a lot since completing this project. 
 
-- Moving the alien ships was the greatest difficulty for this project. Using methods I had learned
+- Moving the alien ships was the single biggest technical challenge. It took me a little while to understand how to correctly define my left and right walls - and tackling the problem of ships moving into each other was a particularly fun challenge!
 
 
 
 ## Victories 
-****Coming soon****
+- Adding the Death Star was surprisingly easy to implement once I had planned the logic. I was surprised and delighted when it appeared and worked as expected on the first attempt. This taught me a lot about planning and structuring my code coherently in advance.
 
+- I'm pleased with the look and feel of the game in terms of its appearance and the sounds and the satisfaction of removing enemy ships. 
 
 
 ## Potential future features
-****Coming soon****
+
+- The Death Star was originally intended to move and fire, but as the project deadline loomed - this proved tricky to implement without compromising the ship's dramatic entrance, which was preferable. Ultimately 
 
 ## Lessons learned
 ****Coming soon****
