@@ -6,7 +6,7 @@ Space Wars is my first ever front-end development project, produced as part of G
 
 My task was to create a grid-based game rendered in the browser that utilised 'vanilla' JavaScript, HTML and CSS.
 
-Given a selection of classic arcade games to choose from, I opted to build my take on _Space Invaders_ - with a theme inspired by the _Star Wars_ film saga and using Pixel art to evoke the sense of a typical arcade game. The broken, tuneless music used is to reflect the low-budget 'knock-off' feel of the game.
+Given a selection of classic arcade games to choose from, I opted to build my take on _Space Invaders_. The theme was inspired by the _Star Wars_ film saga and used pixel art to evoke the sense of a typical arcade game. The broken, tuneless music used is to reflect the low-budget 'knock-off' feel of the game.
 
 The project was mainly to consolidate my beginners' knowledge of JavaScript and interacting with the DOM, but I worked hard to make it a fun experience to play. 
 
@@ -78,9 +78,9 @@ They are then added to the grid using a forEach statement
     })
 ```
 
-Enemy ship movement is defined as a global variable of 1. Using a `setInterval` function, the ships will move 1 space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is mirrored. 
+Enemy ship movement is initially defined as a global variable of `1`. Using a `setInterval` function, the ships will move one space to the right unless other criteria are met. If the right-most alien in the array moves into the defined right wall, then the ships' move variable is re-assigned and will each move one space down and then continue to move left until the left-most alien encounters the defined left wall and the movement is re-assigned and mirrored. 
 
-I had originally opted to use an ES6 `forEach` Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index 0, meaning that rows of ships would disappear into the ship in front as they were being moved down in ascending order. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
+I had originally opted to use an ES6 `forEach` Array method to cycle through the array of alien positions, but the difficulty I encountered was that this started at the beginning of the array, at index `0`, meaning that rows of ships would disappear into the ship in front as they were being moved down in ascending order. I corrected this by utilising a `for` loop to move backwards through the array so that the ships in front moved forward first. 
 
 
 Here I defined a `setInterval` called `alienMovement`. It loops backwards through the alien array, removes the alien CSS class from the specified cell. Increases the movement by the `alienMove` variable and then re-adds the alien.
@@ -134,7 +134,7 @@ Using the defined left and right walls, I reassigned alienMove (the direction th
 
 ### Opponent Lasers
 
-Enemy lasers are fired every 300 millisecond using a setInterval. The firing position is randomly determined using `Math.random` based on the position of the 10 aliens that are furthest forward. The `.slice(-10)` method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
+Enemy lasers are fired every 300 milliseconds using a setInterval. The firing position is randomly determined using `Math.random` based on the position of the 10 aliens that are furthest forward. The `.slice(-10)` method used here means that as the number of aliens in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space. 
 
 
 Below, a `setInterval` is declared. It contains a variable that finds the front 10 of our array of alien ships. `enemyLaser` is then a variable that selects a random position in front of those ships to fire. 
@@ -188,7 +188,7 @@ The `enemyLaser` CSS class is added to the cell in front of the random ship, a s
 ![](./assets/screenshots/Screenshot1.png)
 
 ### The Player
-The player is a variable defined with a number, which related to its position on the grid:
+The player is a variable defined with a number, which defines its position on the grid:
 
 ```js
  let player = 409
@@ -329,7 +329,7 @@ As this is inside a `setInterval`, the elements of the ship that are removed by 
 ## Challenges
 - This was my first frontend JavaScript project and assembling all of my knowledge on arrays, control flow, functions, timeouts and intervals and applying them to an entirely blank canvas for the first time was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have deliberately left much of it like this as way of referencing my ability and understanding at the time of creation (the project was set with a one-week timeframe). I've progressed a lot since completing this project. 
 
-- Moving the alien ships was the single biggest technical challenge. It took me a little while to understand how to correctly define my left and right walls - and tackling the problem of ships moving into each other was a particularly fun challenge!
+- Moving the alien ships was the single biggest technical challenge. It took me a little while to understand how to correctly define my left and right walls - and tackling the problem of ships moving into each other was a particularly engrossing challenge!
 
 
 
@@ -338,10 +338,16 @@ As this is inside a `setInterval`, the elements of the ship that are removed by 
 
 - I'm pleased with the look and feel of the game in terms of its appearance and the sounds and the satisfaction of removing enemy ships. 
 
+- The project really helped to consolidate my knowledge of JavaScript, HTML and CSS and interacting with the DOM. 
+
 
 ## Potential future features
 
-- The Death Star was originally intended to move and fire, but as the project deadline loomed - this proved tricky to implement without compromising the ship's dramatic entrance, which was preferable. Ultimately 
+- The Death Star was originally intended to move and fire, but as the project deadline loomed this proved tricky to implement without compromising the ship's dramatic entrance, which was preferable. Ultimately, I'm happy with a stationary boss, but perhaps in future I'll make it a bit more of a threat to the player...
+
+- I'd be keen to make this game mobile friendly. I treated the task as the first try-out of my JavaScript knowledge. 
+
 
 ## Lessons learned
-****Coming soon****
+
+- Design mobile first. I did this with my follow-up game, [Monkey Tennis](https://github.com/mjadair/Monkey-Tennis)
