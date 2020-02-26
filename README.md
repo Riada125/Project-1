@@ -327,14 +327,14 @@ As this is inside a `setInterval`, the elements of the ship that are removed by 
 
 
 ## Challenges
-- This was my first frontend JavaScript project and assembling all of my knowledge on arrays, control flow, functions, timeouts and intervals and applying them to an entirely blank canvas for the first time was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have deliberately left much of it like this as way of referencing my ability and understanding at the time of creation (the project was set with a one-week timeframe). I've progressed a lot since completing this project. 
+- This was my first front-end JavaScript project and assembling all of my knowledge on arrays, control flow, functions, timeouts and intervals and applying them to an entirely blank canvas for the first time was without doubt the biggest challenge faced. In places, the code is lengthy and a little unwieldy, but I have deliberately left much of it like this as way of referencing my ability and understanding at the time of creation (the project was set with a one-week timeframe). I've progressed a lot since completing this project. 
 
-- Moving the alien ships was the single biggest technical challenge. It took me a little while to understand how to correctly define my left and right walls - and tackling the problem of ships moving into each other was a particularly engrossing challenge!
+- Moving the alien ships was the single biggest technical challenge. It took me a little while to understand how to correctly define my left and right walls - and tackling the problem of ships moving into each other was a particularly engaging challenge!
 
 
 
 ## Victories 
-- Adding the Death Star was surprisingly easy to implement once I had planned the logic. I was surprised and delighted when it appeared and worked as expected on the first attempt. This taught me a lot about planning and structuring my code coherently in advance.
+- Adding the Death Star was surprisingly easy to implement once I had planned the logic. I was surprised and delighted when it appeared and worked as expected on the first attempt. This taught me a lot about planning and structuring my code coherently in advance, rather than just typing and hoping.
 
 - I'm pleased with the look and feel of the game in terms of its appearance and the sounds and the satisfaction of removing enemy ships. 
 
@@ -345,9 +345,11 @@ As this is inside a `setInterval`, the elements of the ship that are removed by 
 
 - The Death Star was originally intended to move and fire, but as the project deadline loomed this proved tricky to implement without compromising the ship's dramatic entrance, which was preferable. Ultimately, I'm happy with a stationary boss, but perhaps in future I'll make it a bit more of a threat to the player...
 
-- I'd be keen to make this game mobile friendly. I treated the task as the first try-out of my JavaScript knowledge. 
+- I'd be keen to make this game mobile friendly. I treated the task as the first try-out of my JavaScript knowledge and so was more concerned with building something that worked on a screen with a keyboard. I'd need to reconsider how the player interacts with the game to make it suitable for smartphone or tablet use.  
 
 
 ## Lessons learned
 
 - Design mobile first. I did this with my follow-up game, [Monkey Tennis](https://github.com/mjadair/Monkey-Tennis)
+
+- Plan better. By the latter stage of the project I was already feeling much more comfortable in implementing my ideas. The boss level worked exactly as I was expecting it to after I planned it out carefully. The previously created elements involved much more trial and error. 
