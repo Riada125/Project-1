@@ -499,7 +499,7 @@ to   { opacity: 1; }
 
 
 
-@media only screen and (max-width: 641px) {
+@media only screen and (min-height: 1000px) {
 
 
   #mobile {
