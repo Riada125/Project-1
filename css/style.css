@@ -510,6 +510,7 @@ to   { opacity: 1; }
     justify-content: center;
     flex-direction: column;
     text-align: center;
+   
   }
 
   .grid {
@@ -525,5 +526,10 @@ to   { opacity: 1; }
 
   .score{
     display: none;
+  }
+
+
+  p{
+    font-size: 45px;
   }
 }
