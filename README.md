@@ -8,7 +8,9 @@ My task was to create a grid-based game rendered in the browser that utilised 'v
 
 Given a selection of classic arcade games to choose from, I opted to build my take on _Space Invaders_. The theme was inspired by the _Star Wars_ film saga and used pixel art to evoke the sense of a typical arcade game. The broken, tuneless music used is to reflect the low-budget 'knock-off' feel of the game.
 
-The project was mainly to consolidate my beginners' knowledge of JavaScript and interacting with the DOM, but I worked hard to make it a fun experience to play. 
+The project was mainly to consolidate my beginners' knowledge of JavaScript and interacting with the DOM, but I worked hard to make it a fun experience to play.
+
+You can play the game [here](https://mjadair.github.io/Space-Wars/) 
 
 
 ## The Brief 
@@ -353,3 +355,5 @@ As this is inside a `setInterval`, the elements of the ship that are removed by 
 - Design mobile first. I did this with my follow-up game, [Monkey Tennis](https://github.com/mjadair/Monkey-Tennis)
 
 - Plan better. By the latter stage of the project I was already feeling much more comfortable in implementing my ideas. The boss level worked exactly as I was expecting it to after I planned it out carefully. The previously created elements involved much more trial and error. 
+
+### [Play the game Now!](https://mjadair.github.io/Space-Wars/)
